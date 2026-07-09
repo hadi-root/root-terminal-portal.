@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Root Terminal | Python Developer Portfolio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.43.0/min/vs/loader.min.js"></script>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-container">
+            <span class="nav-brand"><i class="fa-solid fa-terminal"></i> ROOT TERMINAL</span>
+            <div class="nav-links">
+                <a href="#about"><i class="fa-solid fa-user"></i> About</a>
+                <a href="#projects"><i class="fa-solid fa-folder-open"></i> Projects</a>
+                <a href="#achievements"><i class="fa-solid fa-award"></i> Milestones</a>
+                <a href="#metrics"><i class="fa-solid fa-chart-simple"></i> Metrics</a>
+                <a href="#sandbox"><i class="fa-solid fa-terminal"></i> Sandbox</a>
+                <a href="#contact"><i class="fa-solid fa-envelope"></i> Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <img src="{{ url_for('static', filename='logo.png') }}" alt="Root Terminal Logo" class="logo">
+        <h2>Python Developer | Flask Developer | Future Software Engineer</h2>
+        <p>Building Python Applications, Automation Tools & Modern Web Projects</p>
+        <div class="badges">
+            <span><i class="fa-brands fa-python"></i> Python 3.x</span>
+            <span><i class="fa-solid fa-globe"></i> Flask Framework</span>
+            <span><i class="fa-solid fa-laptop-code"></i> Monaco IDE Core</span>
+            <span><i class="fa-solid fa-gears"></i> Automation</span>
+            <span><i class="fa-brands fa-git-alt"></i> Git Version Control</span>
+        </div>
+    </header>
+
+    <main>
+        <section class="card" id="about">
+            <h2><i class="fa-solid fa-circle-user"></i> About Me</h2>
+            <p class="section-subtitle">Core profile and coding background.</p>
+            <p>Hi, I'm Hadi, a Class 11 CBSE student passionate about Python programming, automation, Flask development, and software engineering. This portfolio showcases my projects and technical skills as I build foundations for enterprise application architecture.</p>
+        </section>
+
+        <section class="card" id="projects">
+            <h2><i class="fa-solid fa-cubes"></i> Python Project Registry</h2>
+            <p class="section-subtitle">Review, execute, or download source distributions instantly.</p>
+            
+            <div class="projects-grid">
+                {% for project in database_projects %}
+                <div class="project-item {{ 'featured' if project.is_featured }}">
+                    {% if project.is_featured %}
+                    <span class="featured-badge"><i class="fa-solid fa-bolt"></i> Advanced</span>
+                    {% endif %}
+                    
+                    <h3>{{ project.title }}</h3>
+                    <p class="project-desc">{{ project.description }}</p>
+                    
+                    <div class="tags">
+                        {% for tag in project.tags.split(',') %}
+                        <span>{{ tag.strip() }}</span>
+                        {% endfor %}
+                    </div>
+                    
+                    <div class="project-actions">
+                        <a class="btn" href="/static/{{ project.download_file }}" download onclick="handleDownload(this)">
+                            <i class="fa-solid fa-download"></i> Download Source
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+
+        <section class="card" id="achievements">
+            <h2><i class="fa-solid fa-award"></i> Accomplishments & Milestones</h2>
+            <p class="section-subtitle">Academic tracking, coursework completions, and engineering paths.</p>
+            <div class="timeline-container">
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fa-solid fa-book-bookmark"></i></div>
+                    <div class="timeline-content">
+                        <h4>Class 11 CBSE Computer Science Track</h4>
+                        <p>Actively mastering fundamental computational thinking, algorithmic state routines, and structured data handling rules.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                    <div class="timeline-content">
+                        <h4>Backend Web Infrastructure Core</h4>
+                        <p>Constructed synchronous routing networks, static pipeline links, and dynamic evaluation sandboxes using WSGI Flask engines.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fa-solid fa-code-fork"></i></div>
+                    <div class="timeline-content">
+                        <h4>Open Source & Version Architecture</h4>
+                        <p>Established robust production deployment branches using decentralized Git ledger environments tracking codebase modifications.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2><i class="fa-brands fa-github-alt"></i> Active Repository Node Hub</h2>
+            <p class="section-subtitle">Core code repositories hosted live on GitHub version nodes.</p>
+            <div class="repo-grid">
+                <div class="repo-box">
+                    <h4><i class="fa-solid fa-book"></i> root-terminal-portal</h4>
+                    <p>The centralized production source code for this portfolio interface, interactive workspace grid, and execution pipeline.</p>
+                    <a href="https://github.com/FORGE-CODE-INDIA" target="_blank" class="repo-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> Explore Source</a>
+                </div>
+                <div class="repo-box">
+                    <h4><i class="fa-solid fa-box-archive"></i> python-script-registry</h4>
+                    <p>A unified compilation directory storing all standard native utility distributions and interactive program arrays.</p>
+                    <a href="https://github.com/FORGE-CODE-INDIA" target="_blank" class="repo-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> Explore Source</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="card" id="metrics">
+            <h2><i class="fa-solid fa-gauge-high"></i> Workspace Metrics</h2>
+            <p class="section-subtitle">System capabilities, stack distribution details, and execution parameters.</p>
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <strong>Dynamic</strong>
+                    <span>SQLite Database</span>
+                </div>
+                <div class="stat-box">
+                    <strong>Python Core</strong>
+                    <span>Interpreter Backbone</span>
+                </div>
+                <div class="stat-box">
+                    <strong>WSGI Flask</strong>
+                    <span>Server Architecture</span>
+                </div>
+                <div class="stat-box">
+                    <strong>Operational</strong>
+                    <span>Pipeline Status</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2><i class="fa-solid fa-sliders"></i> Core Proficiencies</h2>
+            <p class="section-subtitle">Technical skill distribution and execution familiarity.</p>
+            <div class="skills-progress-container">
+                <div class="progress-wrapper">
+                    <span class="skill-label"><i class="fa-brands fa-python"></i> Python</span>
+                    <span class="bar-text">██████████ 90%</span>
+                </div>
+                <div class="progress-wrapper">
+                    <span class="skill-label"><i class="fa-solid fa-globe"></i> Flask</span>
+                    <span class="bar-text">████████ 80%</span>
+                </div>
+                <div class="progress-wrapper">
+                    <span class="skill-label"><i class="fa-brands fa-html5"></i> HTML5</span>
+                    <span class="bar-text">███████ 75%</span>
+                </div>
+                <div class="progress-wrapper">
+                    <span class="skill-label"><i class="fa-brands fa-css3-alt"></i> CSS3</span>
+                    <span class="bar-text">███████ 75%</span>
+                </div>
+                <div class="progress-wrapper">
+                    <span class="skill-label"><i class="fa-brands fa-git-alt"></i> Git</span>
+                    <span class="bar-text">█████ 60%</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2><i class="fa-solid fa-file-pdf"></i> Engineering Transcript</h2>
+            <p class="section-subtitle">Comprehensive overview of development workflows, coursework, and milestones.</p>
+            <a class="btn-secondary" href="{{ url_for('static', filename='Hadi_Resume.pdf') }}" download><i class="fa-solid fa-file-arrow-down"></i> Download Resume</a>
+        </section>
+
+        <section class="card" id="sandbox">
+            <h2><i class="fa-solid fa-square-terminal"></i> Integrated Execution Sandbox</h2>
+            <p class="section-subtitle">Compile scripts directly against the remote kernel inside an isolated runtime window.</p>
+            
+            <div class="sandbox-controls">
+                <div class="template-buttons">
+                    <button type="button" class="btn-sm" onclick="loadExample('hello')">Initialize Script</button>
+                    <button type="button" class="btn-sm" onclick="loadExample('loop')">Loop Array</button>
+                </div>
+                <div class="editor-utility-buttons">
+                    <button type="button" class="btn-sm utility" onclick="copyEditorCode()"><i class="fa-solid fa-copy"></i> Copy</button>
+                    <button type="button" class="btn-sm utility" onclick="clearConsole()"><i class="fa-solid fa-trash-can"></i> Clear Console</button>
+                </div>
+            </div>
+
+            <div id="editor-container"></div>
+            <br>
+            <button onclick="runCode()" class="btn-run"><i class="fa-solid fa-play"></i> Execute Code Sequence</button>
+            
+            <pre id="output"><span class="log-sys">Terminal online. Awaiting data compiler instruction loop...</span></pre>
+        </section>
+
+        <section class="card" id="contact">
+            <h2><i class="fa-solid fa-paper-plane"></i> Communications Router</h2>
+            <p class="section-subtitle">Initiate secure connection vectors or explore documentation networks.</p>
+            <p><i class="fa-solid fa-envelope"></i> Email Gateway: <strong>hadivga@gmail.com</strong></p>
+            <br>
+            <div class="contact-links">
+                <a href="https://github.com/FORGE-CODE-INDIA" target="_blank" class="btn-secondary"><i class="fa-brands fa-github"></i> Access GitHub Node</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="nav-container footer-flex">
+            <div>
+                <p>© 2026 Root Terminal • Designed & Developed by Hadi</p>
+                <p class="footer-subtext">Python Developer • Flask Developer</p>
+            </div>
+            <div class="footer-links">
+                <a href="https://github.com/FORGE-CODE-INDIA" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
+                <a href="mailto:hadivga@gmail.com"><i class="fa-solid fa-envelope"></i> Email</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let editor;
+
+        require.config({ paths: { 'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.43.0/min/vs' } });
+        require(['vs/editor/editor.main'], function() {
+            editor = monaco.editor.create(document.getElementById('editor-container'), {
+                value: 'print("Hello from Root Terminal! 👋")',
+                language: 'python',
+                theme: 'vs-dark',
+                automaticLayout: true,
+                fontSize: 14,
+                fontFamily: "'Fira Code', 'Courier New', monospace",
+                minimap: { enabled: false },
+                roundedSelection: true,
+                scrollBeyondLastLine: false,
+                lineNumbers: "on",
+                cursorBlinking: "smooth"
+            });
+        });
+
+        function loadExample(type) {
+            if (!editor) return;
+            if (type === 'hello') {
+                editor.setValue('print("System initial verification cycle complete. Environment operational.")');
+            } else if (type === 'loop') {
+                editor.setValue('for sequence_index in range(1, 6):\n    print(f"Processing data packet sequence: {sequence_index}")');
+            }
+        }
+
+        function copyEditorCode() {
+            if (!editor) return;
+            navigator.clipboard.writeText(editor.getValue());
+            alert("Code text copied to clipboard successfully.");
+        }
+
+        function clearConsole() {
+            document.getElementById("output").innerHTML = '<span class="log-sys">Console state cleared. Awaiting kernel execution loops...</span>';
+        }
+
+        function runCode(){
+            if (!editor) return;
+            const outputBlock = document.getElementById("output");
+            outputBlock.innerHTML = '<span class="log-sys">Transmitting source code packets to interpreter kernel...</span>';
+            
+            fetch("/run",{
+                method:"POST",
+                headers:{"Content-Type":"application/json"},
+                body:JSON.stringify({ code: editor.getValue() })
+            })
+            .then(res => res.json())
+            .then(data => { 
+                if(data.output.toLowerCase().includes("error") || data.output.toLowerCase().includes("exception")) {
+                    outputBlock.innerHTML = `<span class="log-err">${data.output}</span>`;
+                } else {
+                    outputBlock.innerHTML = `<span class="log-success">${data.output}</span>`;
+                }
+            })
+            .catch(error => { 
+                outputBlock.innerHTML = '<span class="log-err">Execution failed: Endpoint communication error.</span>'; 
+            });
+        }
+
+        function handleDownload(element) {
+            element.classList.add("downloaded");
+            element.innerHTML = '<i class="fa-solid fa-circle-check"></i> Synchronized ✓';
+        }
+    </script>
+</body>
+</html>
