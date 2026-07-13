@@ -3,47 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Config Core Control</title>
+    <title>System Master Control Panel</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <style>
-        label { display: block; margin: 15px 0 5px; color: var(--primary-blue); font-weight: bold; }
-        input[type="text"], input[type="password"], textarea { 
+        label { display: block; margin: 15px 0 5px; color: var(--primary-blue); font-weight: bold; text-align: left; }
+        input[type="text"], input[type="number"], textarea { 
             width: 100%; padding: 12px; background: rgba(0,0,0,0.5); 
             border: 1px solid var(--border-color); color: #fff; 
             font-family: monospace; border-radius: 4px; box-sizing: border-box;
         }
         input:focus, textarea:focus { border-color: var(--primary-green); outline: none; }
-        button { 
-            background: transparent; border: 1px solid var(--primary-green); 
-            color: var(--primary-green); padding: 10px 20px; margin-top: 15px; 
-            cursor: pointer; font-family: monospace; font-weight: bold;
-        }
-        button:hover { background: rgba(57, 255, 20, 0.1); }
+        .form-group { margin-bottom: 25px; padding-bottom: 20px; border-bottom: 1px dashed var(--border-color); }
     </style>
 </head>
 <body>
-    <div style="max-width: 700px; margin: 50px auto; padding: 20px;">
-        <h1 class="brand-text">>_ SYSTEM_CONTROL_PANEL</h1>
-        <a href="/" style="color: var(--primary-green); text-decoration: none;">[<- Back to Site Portal]</a>
+    <div style="max-width: 800px; margin: 40px auto; padding: 20px;">
+        <h1 class="brand-text">>_ SYSTEM_MASTER_CONTROL_PANEL</h1>
+        <div style="margin-bottom:30px;">
+            <a href="/" style="color: var(--primary-green); text-decoration: none; margin-right:20px;">[ <- Portal View ]</a>
+            <a href="/admin/logout" style="color: #ff3333; text-decoration: none;">[ Disconnect Session ]</a>
+        </div>
 
-        <div class="terminal-window" style="padding: 25px; margin-top: 20px; border-radius: 6px;">
-            <div class="accent-text" style="font-weight: bold; margin-bottom: 15px;">[01] EDIT MAIN BIO VARIABLES</div>
-            <form action="/admin" method="POST">
-                <label>Profile Name:</label>
+        <form action="/admin" method="POST" class="terminal-window" style="padding:30px;">
+            <input type="hidden" name="global_update" value="1">
+
+            <div class="form-group">
+                <div class="accent-text" style="font-weight:bold; margin-bottom:15px;">[01] USER IDENTITY MATRIX</div>
+                <label>Profile Label Name:</label>
                 <input type="text" name="name" value="{{ data.name }}">
 
-                <label>Headline Roles:</label>
+                <label>Primary Strategic Subtitles:</label>
                 <input type="text" name="title" value="{{ data.title }}">
 
-                <label>System Description (Bio):</label>
-                <textarea name="bio" rows="5">{{ data.bio }}</textarea>
+                <label>Bio Profile Summary:</label>
+                <textarea name="bio" rows="4">{{ data.bio }}</textarea>
+                
+                <label>System Badges (Separate names with commas):</label>
+                <input type="text" name="badges" value="{{ data.badges | join(', ') }}">
+            </div>
 
-                <label style="color: #ff3333; margin-top:20px;">Master Security Access Token:</label>
-                <input type="HADI" name="@4560082010" required placeholder="Enter password to confirm overwrite...">
+            <div class="form-group">
+                <div class="accent-text" style="font-weight:bold; margin-bottom:15px;">[02] SYSTEM TIMELINE INFRASTRUCTURE</div>
+                <label>Milestone Blocks (One single milestone description line per row):</label>
+                <textarea name="milestones" rows="5">{{ data.milestones | join('\n') }}</textarea>
+            </div>
 
-                <button type="submit">COMMIT TEXT CHANGES</button>
-            </form>
-        </div>
+            <div class="form-group">
+                <div class="accent-text" style="font-weight:bold; margin-bottom:15px;">[03] EXTERNAL NODES / REPOSITORIES</div>
+                <label>Repository 1 Label:</label>
+                <input type="text" name="repo_title_1" value="{{ data.repo_title_1 }}">
+                <label>Repository 1 Summary:</label>
+                <input type="text" name="repo_desc_1" value="{{ data.repo_desc_1 }}">
+
+                <label>Repository 2 Label:</label>
+                <input type="text" name="repo_title_2" value="{{ data.repo_title_2 }}">
+                <label>Repository 2 Summary:</label>
+                <input type="text" name="repo_desc_2" value="{{ data.repo_desc_2 }}">
+            </div>
+
+            <div class="form-group">
+                <div class="accent-text" style="font-weight:bold; margin-bottom:15px;">[04] WORKSPACE ENVIRONMENT METRICS</div>
+                <label>Metric Slot 1 Label:</label> <input type="text" name="metric_1" value="{{ data.metric_1 }}">
+                <label>Metric Slot 2 Label:</label> <input type="text" name="metric_2" value="{{ data.metric_2 }}">
+                <label>Metric Slot 3 Label:</label> <input type="text" name="metric_3" value="{{ data.metric_3 }}">
+                <label>Metric Slot 4 Label:</label> <input type="text" name="metric_4" value="{{ data.metric_4 }}">
+            </div>
+
+            <div class="form-group">
+                <div class="accent-text" style="font-weight:bold; margin-bottom:15px;">[05] CORE PERFORMANCE METERS (%)</div>
+                <label>Python Efficiency Scale:</label> <input type="number" name="skill_py" min="0" max="100" value="{{ data.skill_py }}">
+                <label>Flask Framework Efficiency:</label> <input type="number" name="skill_flask" min="0" max="100" value="{{ data.skill_flask }}">
+                <label>HTML5 Core Structural Competency:</label> <input type="number" name="skill_html" min="0" max="100" value="{{ data.skill_html }}">
+                <label>CSS3 Styling Mechanics Efficiency:</label> <input type="number" name="skill_css" min="0" max="100" value="{{ data.skill_css }}">
+                <label>Git Node Management Matrix:</label> <input type="number" name="skill_git" min="0" max="100" value="{{ data.skill_git }}">
+            </div>
+
+            <button type="submit" class="btn" style="width:100%; padding:15px; font-size:1rem; border-color:var(--primary-green); color:var(--primary-green);">DECRYPT & DEPLOY COMPLETE LIVE REDISTRIBUTION</button>
+        </form>
     </div>
 </body>
 </html>

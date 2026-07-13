@@ -8,9 +8,7 @@
 </head>
 <body>
     <div class="navbar">
-        <div class="navbar-left">
-            <span class="brand-text">>_ ROOT TERMINAL</span>
-        </div>
+        <div class="navbar-left"><span class="brand-text">>_ ROOT TERMINAL</span></div>
         <div class="navbar-right">
             <a href="#about">About</a>
             <a href="#projects">Projects</a>
@@ -30,11 +28,9 @@
             <p style="opacity:0.8;">Building Python Applications, Automation Tools & Modern Web Projects</p>
             
             <div class="badge-row">
-                <span class="tag-badge">✦ Python 3.x</span>
-                <span class="tag-badge">✦ Flask Framework</span>
-                <span class="tag-badge">✦ Monaco IDE Core</span>
-                <span class="tag-badge">✦ Automation</span>
-                <span class="tag-badge">✦ Git Version Control</span>
+                {% for badge in data.badges %}
+                    <span class="tag-badge">✦ {{ badge }}</span>
+                {% endfor %}
             </div>
         </div>
 
@@ -44,7 +40,7 @@
             <p class="bio-text">{{ data.bio }}</p>
         </div>
 
-        <div id="projects" style="margin-top: 40px;">
+        <div id="projects" style="margin-top: 40px; width:100%;">
             <h2 class="brand-text">>_ Python Project Registry</h2>
             <p style="opacity: 0.7; margin-bottom: 25px;">Review, execute, or download source distributions instantly.</p>
             
@@ -137,9 +133,9 @@
             <div class="accent-text window-title">✦ Accomplishments & Milestones</div>
             <p class="section-subtitle">Academic tracking, coursework completions, and engineering paths.</p>
             <ul class="milestone-list">
-                <li><strong>Class 11 CBSE Computer Science Track:</strong> Actively mastering fundamental computational thinking, algorithmic state routines, and structured data handling rules.</li>
-                <li><strong>Backend Web Infrastructure Core:</strong> Constructed synchronous routing networks, static pipeline links, and dynamic evaluation sandboxes using WSGI Flask engines.</li>
-                <li><strong>Open Source & Version Architecture:</strong> Established robust production deployment branches using decentralized Git ledger environments tracking codebase modifications.</li>
+                {% for milestone in data.milestones %}
+                    <li>{{ milestone }}</li>
+                {% endfor %}
             </ul>
         </div>
 
@@ -148,12 +144,12 @@
             <p class="section-subtitle">Core code repositories hosted live on GitHub version nodes.</p>
             <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px; margin-top:15px;">
                 <div class="card" style="box-shadow:none;">
-                    <h4 style="margin:0; color:var(--primary-blue);">root-terminal-portal</h4>
-                    <p style="font-size:0.85rem;">The centralized production source code for this portfolio interface, interactive workspace grid, and execution pipeline.</p>
+                    <h4 style="margin:0; color:var(--primary-blue);">{{ data.repo_title_1 }}</h4>
+                    <p style="font-size:0.85rem;">{{ data.repo_desc_1 }}</p>
                 </div>
                 <div class="card" style="box-shadow:none;">
-                    <h4 style="margin:0; color:var(--primary-blue);">python-script-registry</h4>
-                    <p style="font-size:0.85rem;">A unified compilation directory storing all standard native utility distributions and interactive program arrays.</p>
+                    <h4 style="margin:0; color:var(--primary-blue);">{{ data.repo_title_2 }}</h4>
+                    <p style="font-size:0.85rem;">{{ data.repo_desc_2 }}</p>
                 </div>
             </div>
         </div>
@@ -162,34 +158,33 @@
             <div class="accent-text window-title">✦ Workspace Metrics</div>
             <p class="section-subtitle">System capabilities, stack distribution details, and execution parameters.</p>
             <div class="metrics-grid">
-                <div class="metric-box"><h5>Dynamic</h5><p>SQLite Database</p></div>
-                <div class="metric-box"><h5>Python Core</h5><p>Interpreter Backbone</p></div>
-                <div class="metric-box"><h5>WSGI Flask</h5><p>Server Architecture</p></div>
-                <div class="metric-box"><h5>Operational</h5><p>Pipeline Status</p></div>
+                <div class="metric-box"><h5>Dynamic</h5><p>{{ data.metric_1 }}</p></div>
+                <div class="metric-box"><h5>Python Core</h5><p>{{ data.metric_2 }}</p></div>
+                <div class="metric-box"><h5>WSGI Flask</h5><p>{{ data.metric_3 }}</p></div>
+                <div class="metric-box"><h5>Operational</h5><p>{{ data.metric_4 }}</p></div>
             </div>
 
             <h3 class="brand-text" style="margin-top:30px;">Core Proficiencies</h3>
-            <p class="section-subtitle">Technical skill distribution and execution familiarity.</p>
             
             <div class="progress-container">
-                <div class="progress-label"><span>Python</span><span>90%</span></div>
-                <div class="progress-bar"><div class="progress-fill" style="width: 90%;"></div></div>
+                <div class="progress-label"><span>Python</span><span>{{ data.skill_py }}%</span></div>
+                <div class="progress-bar"><div class="progress-fill" style="width: {{ data.skill_py }}%;"></div></div>
             </div>
             <div class="progress-container">
-                <div class="progress-label"><span>Flask</span><span>80%</span></div>
-                <div class="progress-bar"><div class="progress-fill" style="width: 80%;"></div></div>
+                <div class="progress-label"><span>Flask</span><span>{{ data.skill_flask }}%</span></div>
+                <div class="progress-bar"><div class="progress-fill" style="width: {{ data.skill_flask }}%;"></div></div>
             </div>
             <div class="progress-container">
-                <div class="progress-label"><span>HTML5</span><span>75%</span></div>
-                <div class="progress-bar"><div class="progress-fill" style="width: 75%;"></div></div>
+                <div class="progress-label"><span>HTML5</span><span>{{ data.skill_html }}%</span></div>
+                <div class="progress-bar"><div class="progress-fill" style="width: {{ data.skill_html }}%;"></div></div>
             </div>
             <div class="progress-container">
-                <div class="progress-label"><span>CSS3</span><span>75%</span></div>
-                <div class="progress-bar"><div class="progress-fill" style="width: 75%;"></div></div>
+                <div class="progress-label"><span>CSS3</span><span>{{ data.skill_css }}%</span></div>
+                <div class="progress-bar"><div class="progress-fill" style="width: {{ data.skill_css }}%;"></div></div>
             </div>
             <div class="progress-container">
-                <div class="progress-label"><span>Git</span><span>60%</span></div>
-                <div class="progress-bar"><div class="progress-fill" style="width: 60%;"></div></div>
+                <div class="progress-label"><span>Git</span><span>{{ data.skill_git }}%</span></div>
+                <div class="progress-bar"><div class="progress-fill" style="width: {{ data.skill_git }}%;"></div></div>
             </div>
         </div>
 
@@ -202,15 +197,12 @@
         <div id="sandbox" class="terminal-window" style="margin-top: 40px;">
             <div class="accent-text window-title">Integrated Execution Sandbox</div>
             <p class="section-subtitle">Compile scripts directly against the remote kernel inside an isolated runtime window.</p>
-            
             <div class="sandbox-box">
                 <div class="sandbox-header">
                     <button class="sandbox-tab">Initialize Script</button>
                     <button class="sandbox-tab">Loop Array</button>
                 </div>
-                <div class="code-area">
-                    <span style="color:#6272a4;">1</span> <span style="color:#ff79c6;">print</span>(<span style="color:#f1fa8c;">"Hello from Root Terminal! 👋"</span>)
-                </div>
+                <div class="code-area"><span style="color:#6272a4;">1</span> <span style="color:#ff79c6;">print</span>(<span style="color:#f1fa8c;">"Hello from Root Terminal! 👋"</span>)</div>
                 <button class="execute-btn">Execute Code Sequence</button>
                 <div class="console-output">Terminal online. Awaiting data compiler instruction loop...</div>
             </div>

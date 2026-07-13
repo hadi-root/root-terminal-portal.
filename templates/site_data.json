@@ -1,5 +1,24 @@
 {
     "name": "Hadi",
     "title": "Python Developer | Flask Developer | Future Software Engineer",
-    "bio": "Hi, I'm Hadi, a Class 11 CBSE student passionate about Python programming, automation, Flask development, and software engineering. This portfolio showcases my projects and technical skills as I build foundations for enterprise application architecture."
+    "bio": "Hi, I'm Hadi, a Class 11 student passionate about Python programming, automation, Flask development, and software engineering. This portfolio showcases my projects and technical skills as I build foundations for enterprise application architecture.",
+    "badges": ["Python 3.x", "Flask Framework", "Monaco IDE Core", "Automation", "Git Version Control"],
+    "milestones": [
+        "Class 11 Computer Science Track: Actively mastering fundamental computational thinking, algorithmic state routines, and structured data handling rules.",
+        "Backend Web Infrastructure Core: Constructed synchronous routing networks, static pipeline links, and dynamic evaluation sandboxes using WSGI Flask engines.",
+        "Open Source & Version Architecture: Established robust production deployment branches using decentralized Git ledger environments tracking codebase modifications."
+    ],
+    "repo_title_1": "root-terminal-portal",
+    "repo_desc_1": "The centralized production source code for this portfolio interface, interactive workspace grid, and execution pipeline.",
+    "repo_title_2": "python-script-registry",
+    "repo_desc_2": "A unified compilation directory storing all standard native utility distributions and interactive program arrays.",
+    "metric_1": "SQLite Database",
+    "metric_2": "Interpreter Backbone",
+    "metric_3": "Server Architecture",
+    "metric_4": "Pipeline Status",
+    "skill_py": 90,
+    "skill_flask": 80,
+    "skill_html": 75,
+    "skill_css": 75,
+    "skill_git": 60
 }

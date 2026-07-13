@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Authentication Gate</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .login-box { max-width: 400px; margin: 100px auto; padding: 30px; box-sizing: border-box; }
+        input { width: 100%; padding: 12px; margin-bottom: 20px; background: rgba(0,0,0,0.5); border: 1px solid var(--border-color); color:#fff; font-family: monospace; border-radius:4px; box-sizing: border-box; }
+        input:focus { border-color: var(--primary-green); outline:none; }
+    </style>
+</head>
+<body>
+    <div class="terminal-window login-box">
+        <h2 class="brand-text">>_ CORE_AUTH_GATE</h2>
+        <p class="section-subtitle">Credential check required to access portal environment nodes.</p>
+        
+        <form action="/admin" method="POST">
+            <input type="hidden" name="login_form" value="1">
+            
+            <label style="display:block; text-align:left; margin-bottom:5px; color:var(--primary-blue); font-weight:bold;">Operator ID:</label>
+            <input type="text" name="username" required autocomplete="off" placeholder="Enter username...">
+
+            <label style="display:block; text-align:left; margin-bottom:5px; color:var(--primary-blue); font-weight:bold;">Security Key:</label>
+            <input type="password" name="password" required placeholder="Enter password...">
+
+            <button type="submit" class="btn" style="width:100%;">INITIALIZE LOGIN</button>
+        </form>
+    </div>
+</body>
+</html>
