@@ -1,5 +1,7 @@
 import sqlite3
 import os
+import sys
+import io
 from flask import Flask, render_template, request, redirect, url_for, session
 from init_db import init_db
 
@@ -9,11 +11,10 @@ app.secret_key = "root_super_secure_vault_key"
 DB_FILE = "database.db"
 
 def get_db_connection():
-    # Automatically initialize the database if the file is missing
     if not os.path.exists(DB_FILE):
         init_db()
     conn = sqlite3.connect(DB_FILE)
-    conn.row_factory = sqlite3.Row  # Allows us to access columns by name like dictionary keys
+    conn.row_factory = sqlite3.Row
     return conn
 
 def load_site_data():
@@ -23,13 +24,11 @@ def load_site_data():
     rows = cursor.fetchall()
     conn.close()
     
-    # Convert SQL rows into a clean Python dictionary for Jinja templates
     data = {}
     for row in rows:
         key = row['key']
         val = row['value']
         
-        # Process comma-separated tags or newline-separated milestones into lists
         if key == 'badges':
             data[key] = [b.strip() for b in val.split(',') if b.strip()]
         elif key == 'milestones':
@@ -48,6 +47,31 @@ def update_db_setting(cursor, key, value):
 def index():
     site_data = load_site_data()
     return render_template('index.html', data=site_data)
+
+@app.route('/run-sandbox', methods=['POST'])
+def run_sandbox():
+    user_code = request.form.get('code', '')
+    
+    # Capture standard output stream to read print messages
+    old_stdout = sys.stdout
+    redirected_output = io.StringIO()
+    sys.stdout = redirected_output
+    
+    try:
+        # Evaluate script environment inside local block variables
+        exec(user_code, {"__builtins__": __builtins__}, {})
+        output = redirected_output.getvalue()
+    except Exception as e:
+        output = f"Execution Error: {str(e)}"
+    finally:
+        sys.stdout = old_stdout
+        
+    if not output.strip():
+        output = "Script executed successfully with no console print return values."
+        
+    session['sandbox_code'] = user_code
+    session['sandbox_output'] = output
+    return redirect(url_for('index') + '#sandbox')
 
 @app.route('/admin', methods=['GET', 'POST'])
 def admin_dashboard():
@@ -73,7 +97,6 @@ def admin_dashboard():
             conn = get_db_connection()
             cursor = conn.cursor()
             
-            # Update each setting line-by-line inside the SQL table
             update_db_setting(cursor, "name", request.form.get('name'))
             update_db_setting(cursor, "title", request.form.get('title'))
             update_db_setting(cursor, "bio", request.form.get('bio'))
@@ -103,9 +126,7 @@ def admin_dashboard():
     if not session.get('logged_in'):
         return render_template('admin_login.html')
         
-    # Before displaying to the admin panel inputs, convert back to editable raw text configurations
     raw_data = dict(site_data)
-    # Reload original text block structures for editing textareas cleanly
     conn = get_db_connection()
     c = conn.cursor()
     c.execute("SELECT value FROM settings WHERE key='badges'")

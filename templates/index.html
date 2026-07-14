@@ -197,15 +197,24 @@
         <div id="sandbox" class="terminal-window" style="margin-top: 40px;">
             <div class="accent-text window-title">Integrated Execution Sandbox</div>
             <p class="section-subtitle">Compile scripts directly against the remote kernel inside an isolated runtime window.</p>
-            <div class="sandbox-box">
+            
+            <form action="/run-sandbox" method="POST" class="sandbox-box">
                 <div class="sandbox-header">
-                    <button class="sandbox-tab">Initialize Script</button>
-                    <button class="sandbox-tab">Loop Array</button>
+                    <span style="color:#fff; font-size:0.85rem; font-family:monospace;">[ Python 3.x Kernel Active ]</span>
                 </div>
-                <div class="code-area"><span style="color:#6272a4;">1</span> <span style="color:#ff79c6;">print</span>(<span style="color:#f1fa8c;">"Hello from Root Terminal! 👋"</span>)</div>
-                <button class="execute-btn">Execute Code Sequence</button>
-                <div class="console-output">Terminal online. Awaiting data compiler instruction loop...</div>
-            </div>
+                
+                <textarea name="code" style="width:100%; height:120px; background:#1e1f29; color:#f8f8f2; border:1px solid #44475a; font-family:monospace; padding:15px; box-sizing:border-box; border-radius:4px; resize:vertical; font-size:0.9rem;" placeholder='print("Hello from Root Terminal! 👋")'>{{ session.pop('sandbox_code', 'print("Hello from Root Terminal! 👋")') }}</textarea>
+                
+                <button type="submit" class="execute-btn">Execute Code Sequence</button>
+                
+                <div class="console-output">
+                    {% if session.get('sandbox_output') %}
+                        {{ session.pop('sandbox_output') }}
+                    {% else %}
+                        Terminal online. Awaiting data compiler instruction loop...
+                    {% endif %}
+                </div>
+            </form>
         </div>
 
         <div id="contact" class="terminal-window" style="margin-top: 40px; margin-bottom: 60px;">
