@@ -14,11 +14,11 @@ def init_db():
     
     # Default portfolio data matrix
     default_data = {
-        "name": "Hadi",
+        "name": "ROOT-TERMINAL-HUB",
         "title": "Python Developer | Flask Developer | Future Software Engineer",
         "bio": "Hi, I'm Hadi, a Class 11 student passionate about Python programming, automation, Flask development, and software engineering.",
         "badges": "Python 3.x, Flask Framework, Automation, Git",
-        "milestones": "Class 11 CBSE Computer Science Track: Actively mastering fundamental computational thinking.\nBackend Web Infrastructure Core: Constructed synchronous routing networks using Flask.\nOpen Source Architecture: Tracking codebase modifications with Git.",
+        "milestones": "Class 11 Computer Science Track: Actively mastering fundamental computational thinking.\nBackend Web Infrastructure Core: Constructed synchronous routing networks using Flask.\nOpen Source Architecture: Tracking codebase modifications with Git.",
         "repo_title_1": "root-terminal-portal",
         "repo_desc_1": "The production source code for this portfolio interface.",
         "repo_title_2": "python-script-registry",
